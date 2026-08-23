@@ -1,0 +1,30 @@
+declare const styles: {
+  alertsContainer: string;
+  alertsHeader: string;
+  alertsHeaderTitle: string;
+  alertCounter: string;
+  alertsControls: string;
+  controlButton: string;
+  alertsListContainer: string;
+  alertItem: string;
+  warning: string;
+  success: string;
+  critical: string;
+  info: string;
+  dismissing: string;
+  alertTitleRow: string;
+  alertTitle: string;
+  alertTimestamp: string;
+  alertMessage: string;
+  emptyState: string;
+  emptyStateIcon: string;
+  emptyStateText: string;
+  loadingState: string;
+  loadingSpinner: string;
+  loadingText: string;
+  errorState: string;
+  errorIcon: string;
+  errorText: string;
+};
+
+export default styles;

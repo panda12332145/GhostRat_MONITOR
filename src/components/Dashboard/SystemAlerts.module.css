@@ -1,0 +1,389 @@
+/* SystemAlerts.module.css - Styles for the dynamic alerts component */
+
+/* Container for the entire alerts section */
+.alertsContainer {
+  background: rgb(17, 24, 39);
+  border: 1px solid rgb(30, 42, 58);
+  border-radius: 8px;
+  overflow: hidden;
+  animation: slideInUp 0.3s ease-out;
+}
+
+/* Header section */
+.alertsHeader {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgb(30, 42, 58);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.alertsHeaderTitle {
+  color: rgb(255, 255, 255);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alertCounter {
+  background: rgba(0, 255, 212, 0.2);
+  color: rgb(0, 255, 212);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
+
+.alertsControls {
+  display: flex;
+  gap: 6px;
+}
+
+.controlButton {
+  background: transparent;
+  border: 1px solid rgba(0, 255, 212, 0.3);
+  color: rgb(0, 255, 212);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.controlButton:hover {
+  background: rgba(0, 255, 212, 0.1);
+  border-color: rgb(0, 255, 212);
+  box-shadow: 0 0 8px rgba(0, 255, 212, 0.3);
+}
+
+.controlButton:active {
+  transform: scale(0.95);
+}
+
+/* Alert items container with custom scrollbar */
+.alertsListContainer {
+  padding: 8px;
+  max-height: 340px; /* Space for approximately 3 alerts */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar styling */
+.alertsListContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alertsListContainer::-webkit-scrollbar-track {
+  background: rgba(30, 42, 58, 0.5);
+  border-radius: 3px;
+}
+
+.alertsListContainer::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 212, 0.4);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.alertsListContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 212, 0.6);
+}
+
+/* Firefox scrollbar */
+.alertsListContainer {
+  scrollbar-color: rgba(0, 255, 212, 0.4) rgba(30, 42, 58, 0.5);
+  scrollbar-width: thin;
+}
+
+/* Single alert item */
+.alertItem {
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  position: relative;
+  border-width: 1px 1px 1px 3px;
+  border-style: solid;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: slideInLeft 0.3s ease-out;
+  will-change: opacity, transform;
+}
+
+.alertItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover effect on alert items */
+.alertItem:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Alert item - warning severity */
+.alertItem.warning {
+  background: rgba(255, 107, 53, 0.08);
+  border-color: rgba(255, 107, 53, 0.19) rgba(255, 107, 53, 0.19) rgba(255, 107, 53, 0.19) rgb(255, 107, 53);
+}
+
+/* Alert item - success severity */
+.alertItem.success {
+  background: rgba(0, 255, 212, 0.08);
+  border-color: rgba(0, 255, 212, 0.19) rgba(0, 255, 212, 0.19) rgba(0, 255, 212, 0.19) rgb(0, 255, 212);
+}
+
+/* Alert item - critical severity */
+.alertItem.critical {
+  background: rgba(255, 0, 64, 0.08);
+  border-color: rgba(255, 0, 64, 0.19) rgba(255, 0, 64, 0.19) rgba(255, 0, 64, 0.19) rgb(255, 0, 64);
+}
+
+/* Alert item - info severity */
+.alertItem.info {
+  background: rgba(100, 150, 200, 0.08);
+  border-color: rgba(100, 150, 200, 0.19) rgba(100, 150, 200, 0.19) rgba(100, 150, 200, 0.19) rgb(100, 150, 200);
+}
+
+/* Alert item being dismissed */
+.alertItem.dismissing {
+  animation: slideOutRight 0.3s ease-in forwards;
+  opacity: 0.5;
+  transform: translateX(-4px);
+}
+
+/* Alert title and timestamp row */
+.alertTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3px;
+}
+
+.alertTitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  flex: 1;
+}
+
+.alertTimestamp {
+  color: rgb(74, 85, 104);
+  font-size: 9px;
+  flex-shrink: 0;
+  margin-left: 8px;
+  white-space: nowrap;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Alert message */
+.alertMessage {
+  color: rgb(139, 149, 165);
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 0;
+  word-break: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+/* Empty state */
+.emptyState {
+  padding: 40px 20px;
+  text-align: center;
+  color: rgb(74, 85, 104);
+}
+
+.emptyStateIcon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+
+.emptyStateText {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Loading state */
+.loadingState {
+  padding: 20px;
+  text-align: center;
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 255, 212, 0.2);
+  border-top-color: rgb(0, 255, 212);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loadingText {
+  color: rgb(139, 149, 165);
+  font-size: 11px;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Error state */
+.errorState {
+  padding: 16px;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 4px;
+  margin: 8px;
+}
+
+.errorIcon {
+  color: rgb(255, 107, 53);
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.errorText {
+  color: rgb(255, 107, 53);
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 0;
+  word-break: break-word;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .alertsContainer {
+    border-radius: 4px;
+  }
+
+  .alertsHeader {
+    padding: 8px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .alertsControls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .alertsListContainer {
+    max-height: 280px;
+  }
+
+  .alertsHeaderTitle {
+    font-size: 10px;
+  }
+
+  .alertItem {
+    padding: 6px 8px;
+    margin-bottom: 4px;
+  }
+
+  .alertTitle {
+    font-size: 9px;
+  }
+
+  .alertMessage {
+    font-size: 9px;
+  }
+
+  .alertTimestamp {
+    font-size: 8px;
+  }
+
+  .controlButton {
+    padding: 3px 6px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .alertsListContainer {
+    max-height: 240px;
+  }
+
+  .alertsHeaderTitle {
+    font-size: 9px;
+  }
+
+  .alertItem {
+    padding: 5px 7px;
+    margin-bottom: 3px;
+  }
+
+  .alertCounter {
+    font-size: 9px;
+    padding: 1px 6px;
+  }
+
+  .alertTitle {
+    font-size: 8px;
+  }
+
+  .alertMessage {
+    font-size: 8px;
+  }
+
+  .alertTimestamp {
+    font-size: 7px;
+  }
+}
